@@ -16,6 +16,6 @@ class IndexController extends Controller
 
     public function index()
     {
-        echo "welcome to atian_frame!!!!!";
+       $this->display();
     }
 }
