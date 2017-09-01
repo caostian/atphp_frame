@@ -4,7 +4,7 @@
  * User: atian
  * Date: 2017/7/31
  * Time: 17:27
- * 支付控制器
+ * 支付控制器---自给封装的一些支付方法,包括,支付宝web支付,支付宝扫码支付,微信扫码支付
  */
 
 namespace home\controller;
