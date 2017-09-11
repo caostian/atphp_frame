@@ -509,6 +509,18 @@ abstract class Db
     {
         $order = '';
         if (!empty($this->_cond['order'])) {
+            if(is_array($this->_cond['order'])){
+                foreach ($this->_cond['order'] as $key=>$value){
+                    if(is_numeric($key)){
+                        $order.=" {$value } , ";
+                    }else{
+                        $order.="{$key} {$value} , ";
+                    }
+
+                }
+                $this->_cond['order'] =  rtrim($order,", ");
+            }
+
             $order = "ORDER BY {$this->_cond['order']}";
         }
         $this->_clearCond('order');

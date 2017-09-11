@@ -12,6 +12,12 @@ namespace home\controller;
 use atphp\Controller;
 use atphp\db\Model;
 
+
+/*****
+ * mycat 的一些测试
+ *
+ */
+
 class Test2Controller extends Controller
 {
 
@@ -24,7 +30,7 @@ class Test2Controller extends Controller
         dump($result);
 
 
-        $result = $model->table("t_user")->select();
+        $result = $model->table("t_user")->order(["user_id"=>"desc","user_name"=>"asc"])->select();
         echo  $model->getLastSql();
 
         dump($result);
