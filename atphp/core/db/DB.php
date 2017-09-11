@@ -423,7 +423,7 @@ abstract class Db
         $order = $this->_dealOrder();
         $group = $this->_dealGroup();
         $limit = $this->_dealLimit();
-        $sql = "SELECT $field FROM `$table` $where $group $order $limit";
+        $sql = "SELECT $field FROM $table $where $group $order $limit";
         return $sql;
     }
 
@@ -444,7 +444,14 @@ abstract class Db
      */
     protected function _dealTable()
     {
-        return $this->_cond['table'];
+        $table = trim($this->_cond['table']);
+        if(!empty($this->_cond['table'])){
+            if(strpos($table,' ')===false){
+                $table = "`{$table}`";
+            }
+        }
+        $this->_clearCond('table');
+        return $table;
     }
 
     /**
