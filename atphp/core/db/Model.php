@@ -130,7 +130,10 @@ class Model
 
     public function insert($data)
     {
-        return $this->db->insert($data);
+        if($this->db->insert($data)){
+            return $this->db->insertId();
+        }
+        return false;
     }
 
 

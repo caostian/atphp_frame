@@ -17,7 +17,6 @@ use atphp\db\Model;
  * mycat 的一些测试
  *
  */
-
 class Test2Controller extends Controller
 {
 
@@ -25,15 +24,26 @@ class Test2Controller extends Controller
     {
 
         $model = new Model();
-        $result = $model->getRows('/*!mycat:catlet=io.mycat.catlets.ShareJoin */   SELECT * FROM  t_user u LEFT JOIN  `t_servier` ser on u.user_id = ser.use_id order by ser.ser_id DESC LIMIT 0,2');
+
+        //跨分片join,目前感觉有bug,limit 分页 和排序功能都有问题
+//        $result = $model->getRows('/*!mycat:catlet=io.mycat.catlets.ShareJoin */   SELECT * FROM  t_user u LEFT JOIN  `t_servier` ser on u.user_id = ser.use_id order by ser.ser_id DESC LIMIT 0,2');
+//
+//        dump($result);
+//
+//        //过分片查询
+//        $result = $model->table("t_user")->order(["user_id"=>"desc","user_name"=>"asc"])->select();
+//        echo  $model->getLastSql();
+//
+//        dump($result);
+
+        //插入
+        $result = $model->table("t_user")->insert(array(
+            "user_name" => "php测试",
+            "user_money" => 100,
+        ));
 
         dump($result);
 
-
-        $result = $model->table("t_user")->order(["user_id"=>"desc","user_name"=>"asc"])->select();
-        echo  $model->getLastSql();
-
-        dump($result);
 
     }
 }
