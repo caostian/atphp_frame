@@ -164,7 +164,9 @@ abstract class Db
      */
     public function find()
     {
+
         $res = $this->getRow($this->_dealSelectSql());
+
         return isset($res[0]) ? $res[0] : [];
     }
 

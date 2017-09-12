@@ -31,18 +31,18 @@ class Test2Controller extends Controller
 //        dump($result);
 //
 //        //过分片查询
-//        $result = $model->table("t_user")->order(["user_id"=>"desc","user_name"=>"asc"])->select();
-//        echo  $model->getLastSql();
-//
-//        dump($result);
-
-        //插入
-        $result = $model->table("t_user")->insert(array(
-            "user_name" => "php测试",
-            "user_money" => 100,
-        ));
+        $result = $model->table("t_user")->order(["user_id"=>"desc","user_name"=>"asc"])->find();
+        echo  $model->getLastSql();
 
         dump($result);
+
+        //插入
+//        $result = $model->table("t_user")->insert(array(
+//            "user_name" => "php测试",
+//            "user_money" => 100,
+//        ));
+
+      //  dump($result);
 
 
     }

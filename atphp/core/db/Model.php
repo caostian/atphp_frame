@@ -73,8 +73,7 @@ class Model
      */
     public function find()
     {
-        $this->db->find();
-        return $this;
+        return $this->db->find();
     }
 
     public function getCurrentDb()
@@ -130,7 +129,7 @@ class Model
 
     public function insert($data)
     {
-        if($this->db->insert($data)){
+        if ($this->db->insert($data)) {
             return $this->db->insertId();
         }
         return false;
