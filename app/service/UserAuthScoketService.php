@@ -25,6 +25,8 @@ class UserAuthScoketService
 
     /**
      * 发公告
+     * @param $str
+     * @return bool
      */
     public function sendBroad($str)
     {
@@ -40,14 +42,56 @@ class UserAuthScoketService
 
         $content .= pack('a256', $str);
         $result = fwrite($this->hander, $content);
-
-        dump($result);
         //关闭连接
         SocketService::close();
         if (false === $result) {
-            return -2;
+            return false;
         }
-        return 1;
+        return true;
+    }
+
+
+    /**
+     * 踢人
+     * @param $uid
+     * @return array
+     */
+    public function kickOut($uid)
+    {
+        $return_array = array(
+            "status" => false,
+            "msg" => "踢出玩家时文件读写错误"
+        );
+
+        $content = pack('L', 4 + 30 + 4);  // 4 byte
+        $content .= $this->packHead(222); // 30 byte
+
+        $content .= pack('l', $uid);
+
+        $result = fwrite($this->hander, $content);
+
+        if ($result !== false) {
+            $status = stream_get_meta_data($this->hander);
+            if (!$status['timed_out']) {
+                $result = $this->unPackHead($this->hander);
+                if ($result === 0) {
+                    $arr = unpack('l', fread($this->hander, 4));
+                    $ret = $arr[1];
+
+                    $return_array["status"] = true;
+                    if (0 == $ret) {
+                        //成功
+                        $return_array["msg"] = "玩家已被踢出";
+                    } else {
+                        //玩家已退出了平台，也是成功的
+                        $return_array["msg"] = "玩家已退出平台";
+                    }
+                }
+            } else {
+                $return_array["msg"] = "踢出玩家超时";
+            }
+        }
+        return $return_array;
     }
 
 
