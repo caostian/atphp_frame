@@ -11,6 +11,7 @@ namespace home\controller;
 
 use atphp\Controller;
 use atphp\db\Model;
+use service\UserAuthScoketService;
 
 
 /*****
@@ -23,7 +24,7 @@ class Test2Controller extends Controller
     public function index()
     {
 
-        $model = new Model();
+        // $model = new Model();
 
         //跨分片join,目前感觉有bug,limit 分页 和排序功能都有问题
 //        $result = $model->getRows('/*!mycat:catlet=io.mycat.catlets.ShareJoin */   SELECT * FROM  t_user u LEFT JOIN  `t_servier` ser on u.user_id = ser.use_id order by ser.ser_id DESC LIMIT 0,2');
@@ -31,10 +32,10 @@ class Test2Controller extends Controller
 //        dump($result);
 //
 //        //过分片查询
-        $result = $model->table("t_user")->order(["user_id"=>"desc","user_name"=>"asc"])->find();
-        echo  $model->getLastSql();
-
-        dump($result);
+//        $result = $model->table("t_user")->order(["user_id"=>"desc","user_name"=>"asc"])->find();
+//        echo  $model->getLastSql();
+//
+//        dump($result);
 
         //插入
 //        $result = $model->table("t_user")->insert(array(
@@ -42,8 +43,14 @@ class Test2Controller extends Controller
 //            "user_money" => 100,
 //        ));
 
-      //  dump($result);
+        //  dump($result);
 
 
+    }
+
+    public function test1()
+    {
+        $userSocketService = new UserAuthScoketService();
+        $userSocketService->sendBroad("woshishui");
     }
 }

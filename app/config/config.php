@@ -14,8 +14,6 @@ return array(
 //        'test'=>['index','test'],
 //        'blog'=>['index','blog']
 //    ],
-
-
 //单数据库配置写法
 
     "mysql" => [
@@ -59,5 +57,12 @@ return array(
 //        ],
 //    ],
 
+
+    "socket" => [
+        "user_auth" => [
+            "host" => '192.168.66.160',
+            "port" => "8400",
+        ],
+    ],
 
 );
