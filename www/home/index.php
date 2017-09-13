@@ -17,7 +17,7 @@ define('APP_PATH', ROOT_PATH . "app/");
 //这个模块的名称,对应项目不同的文件夹
 define('MODULE_NAME', "home");
 
-define('DEBUG', true);//调试模式
+define('DEBUG', false);//调试模式
 
 define('MODULE_PATH', APP_PATH . MODULE_NAME . "/");//模块目录...也就是app模块
 

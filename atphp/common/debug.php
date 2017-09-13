@@ -8,17 +8,17 @@
  */
 
 //打开PHP的错误显示
-ini_set('display_errors',true);
-
+ini_set('display_errors', true);
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 //这里开启错误提示
-if(DEBUG && PHP_SAPI != 'cli') {
+if (DEBUG && PHP_SAPI != 'cli') {
     //载入友好的错误显示类
     $whoops = new \Whoops\Run;
     $errorPage = new \Whoops\Handler\PrettyPageHandler;
-    $errorPage->setPageTitle("PHP报错了,要注意了哇!");
+    $errorPage->setPageTitle("PHP报错了,要注意了哇");
     $whoops->pushHandler($errorPage);
     $whoops->register();
 } else {
-     set_error_handler(array('\atphp\exception\ExceptionHandle','errorHandle'));
-     set_exception_handler(array('\atphp\exception\ExceptionHandle','exceptionHandle'));
+//  set_error_handler(array('\atphp\exception\ExceptionHandle','errorHandle'));
+    set_exception_handler(array('\atphp\exception\ExceptionHandle', 'exceptionHandle'));
 }

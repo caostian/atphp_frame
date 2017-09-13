@@ -11,6 +11,8 @@ namespace home\controller;
 
 use atphp\Controller;
 use atphp\db\Model;
+use atphp\exception\ExceptionExt;
+use oracleModel\UserOracleModel;
 use service\UserAuthScoketService;
 
 
@@ -24,7 +26,7 @@ class Test2Controller extends Controller
     public function index()
     {
 
-        // $model = new Model();
+        $model = new Model();
 
         //跨分片join,目前感觉有bug,limit 分页 和排序功能都有问题
 //        $result = $model->getRows('/*!mycat:catlet=io.mycat.catlets.ShareJoin */   SELECT * FROM  t_user u LEFT JOIN  `t_servier` ser on u.user_id = ser.use_id order by ser.ser_id DESC LIMIT 0,2');
@@ -52,5 +54,19 @@ class Test2Controller extends Controller
     {
         $userSocketService = new UserAuthScoketService();
         $userSocketService->sendBroad("woshishui");
+    }
+
+    public function test2()
+    {
+        try {
+            $useOracleModel = new UserOracleModel();
+            $info = $useOracleModel->getUseInfo();
+            dump($info);
+        } catch (ExceptionExt $e) {
+           // echo "ggg";
+            dump($e);
+        }
+
+
     }
 }

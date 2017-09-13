@@ -108,11 +108,4 @@ function getMillisecond()
 }
 
 
-function getDbModel($table = '', $data_config = null)
-{
-    $model = new \atphp\db\Model($data_config);
-    return $model->getTable($table);
-}
-
-
 

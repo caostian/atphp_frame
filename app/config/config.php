@@ -65,4 +65,31 @@ return array(
         ],
     ],
 
+
+    //一维数据的配置方式
+//        "oracle"=>[
+//            'db_link' => '//192.168.66.160:1521/coobar',
+//            'db_user' => 'game_user',
+//            'db_pwd' => '123456',
+//            'db_charset'=>'ZHS16GBK'
+//        ],
+
+    //二维数组的配置方式
+    "oracle" => [
+        //这个是读数据库 默认.
+        "read" => [
+            'db_link' => '//192.168.66.160:1521/coobar',
+            'db_user' => 'game_user',
+            'db_pwd' => '123456',
+            'db_charset'=>'ZHS16GBK'
+        ],
+        //这个是写数据库--由于我操作写比较少
+        "write" => [
+            'db_link' => '//192.168.66.160:1521/coobar',
+            'db_user' => 'game_user',
+            'db_pwd' => '123456',
+            'db_charset'=>'ZHS16GBK'
+        ],
+    ],
+
 );

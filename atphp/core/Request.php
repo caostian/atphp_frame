@@ -79,6 +79,7 @@ class Request
         return $return;
     }
 
+
     /**
      * 获取单个get 或者全部 get 数据
      * @param null $str
@@ -186,6 +187,10 @@ class Request
         return self::http_method() == "GET";
     }
 
+    public static function isAjax()
+    {
+        return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') ? true : false;
+    }
 
     /**
      * 获取当前完整URL 包括QUERY_STRING

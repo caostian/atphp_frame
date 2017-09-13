@@ -13,7 +13,9 @@
 namespace atphp\exception;
 
 
+use atphp\Request;
 use atphp\util\DateUtil;
+use atphp\util\HttpUtil;
 use atphp\util\LogUtil;
 
 class ExceptionHandle
@@ -28,6 +30,7 @@ class ExceptionHandle
      */
     public static function errorHandle($errno, $errstr, $errfile, $errline)
     {
+        echo $errstr;
         throw new ExceptionExt($errstr, ExceptionExt::PHP_ERROR);
     }
 
@@ -71,8 +74,13 @@ class ExceptionHandle
             $error['message'] = '程序出现异常';
         }
 
-        //错误显示模板
-        require_once CORE_PATH . "tpl/show_user_error.php";
+        if(Request::isAjax()){
+            return array("status"=>false,"msg"=>$error["message"]);
+        }else{
+            //错误显示模板
+            require_once CORE_PATH . "tpl/show_user_error.php";
+        }
+
 
     }
 
