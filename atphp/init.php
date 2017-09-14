@@ -11,9 +11,20 @@ header("Content-type: text/html; charset=utf-8");
 //加载定义文件
 require_once __DIR__ . "/common/define.php";
 //加载类库
-include COMMON_PATH . 'function.php';
+include_once COMMON_PATH . 'function.php';
 
-include APP_PATH."common/function.php";
+
+//加载公共的function.php文件
+if(is_file(APP_PATH."common/function.php")){
+    include_once APP_PATH."common/function.php";
+}
+//加载当前的模块的function文件
+if(is_file(MODULE_PATH."common/function.php")){
+    include_once MODULE_PATH."common/function.php";
+}
+
+
+
 
 //注册自动加载
 spl_autoload_register('auto_load');
