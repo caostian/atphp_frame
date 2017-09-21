@@ -1,5 +1,8 @@
 <?php
 namespace atphp\util;
+
+use atphp\exception\ExceptionExt;
+
 class XmlUtil
 {
     // 输出参数
@@ -29,6 +32,32 @@ class XmlUtil
         // XML数据转换
         return self::xmlEncode($data, self::$options['root_node'], self::$options['item_node'], self::$options['root_attr'], self::$options['item_key'], self::$options['encoding']);
     }
+
+
+    /**
+     * 生成简洁一点的XML
+     * @param $data
+     * @return string
+     * @throws ExceptionExt
+     */
+    public static function encodeSimple($data)
+    {
+        if (!is_array($data) || count($data) <= 0) {
+            throw new ExceptionExt("array data error!");
+        }
+
+        $xml = "<xml>";
+        foreach ($data as $key => $val) {
+            if (is_numeric($val)) {
+                $xml .= "<" . $key . ">" . $val . "</" . $key . ">";
+            } else {
+                $xml .= "<" . $key . "><![CDATA[" . $val . "]]></" . $key . ">";
+            }
+        }
+        $xml .= "</xml>";
+        return $xml;
+    }
+
 
     public static function decode($xml)
     {

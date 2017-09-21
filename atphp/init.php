@@ -8,6 +8,7 @@
 
 //设置默认市区
 header("Content-type: text/html; charset=utf-8");
+
 //加载定义文件
 require_once __DIR__ . "/common/define.php";
 //加载类库
@@ -22,8 +23,6 @@ if(is_file(APP_PATH."common/function.php")){
 if(is_file(MODULE_PATH."common/function.php")){
     include_once MODULE_PATH."common/function.php";
 }
-
-
 
 
 //注册自动加载

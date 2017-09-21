@@ -50,19 +50,22 @@ class Request
     public static function getString($name, $func = "addslashes", $other_func = true)
     {
         !isset(self::$init) && self::init();
-        self::$data[$name] = trim(self::$data[$name]);//减除空格
-        //转实体
-        if ($other_func) {
-            self::$data[$name] = htmlentities(self::$data[$name]);
+        if (isset(self::$data[$name])) {
+            self::$data[$name] = trim(self::$data[$name]);//减除空格
+            //转实体
+            if ($other_func) {
+                self::$data[$name] = htmlentities(self::$data[$name]);
+            }
+            switch (strtolower($func)) {
+                case "addslashes" :
+                    self::$data[$name] = addslashes(self::$data[$name]);
+                    break;
+            }
+            return self::$data[$name];
         }
-        switch (strtolower($func)) {
-            case "addslashes" :
-                self::$data[$name] = addslashes(self::$data[$name]);
-                break;
-        }
+        return "";
 
 
-        return self::$data[$name];
     }
 
     /**
@@ -74,6 +77,9 @@ class Request
     {
         $return = $_GET;
         if (!is_null($str)) {
+            if(!isset($return[$str])){
+                return '';
+            }
             $return = htmlspecialchars($return[$str]);
         }
         return $return;
@@ -89,6 +95,9 @@ class Request
     {
         $return = $_POST;
         if (!is_null($str)) {
+            if(!isset($return[$str])){
+                return '';
+            }
             $return = htmlspecialchars($_REQUEST[$str]);
         }
         return $return;

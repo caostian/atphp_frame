@@ -44,6 +44,7 @@ class LogUtil
         if (!is_dir($log_path)) FileUtil::mkdir($log_path);
 
         $destination = $log_path.$destination;
+
         if(self::FILE == $type) {
             if(is_file($destination) && floor(Config::get("log_file_size")) <= filesize($destination) )
                 rename($destination,dirname($destination).'/'.basename($destination).".".time());
@@ -55,6 +56,7 @@ class LogUtil
     static function write($message,$level=self::ERR,$type=self::FILE,$destination='',$extra='')
     {
         $now = date("Y-m-d H:i:s");
+
         if(empty($destination)){
             $destination = date('Ymd').".log";
         }
@@ -63,6 +65,9 @@ class LogUtil
 
 
         $destination = $log_path.$destination;
+
+
+
         if (!is_dir(dirname($destination))) FileUtil::mkdir(dirname($destination));
 
         if(self::FILE == $type) {

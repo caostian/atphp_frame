@@ -20,13 +20,14 @@ class Router
     {
         $route = Config::get('route'); //加载整个路由配置文件
 
-
         if (isset($_SERVER['REQUEST_URI'])) {
             $pathStr = str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']);
+
             //丢掉?以及后面的参数
             $path = explode('?', $pathStr);
             //去掉多余的分隔符
             $path = explode('/', trim($path[0], '/'));
+
             if (isset($path[0]) && $path[0]) {
                 $this->controller = $path[0]; //第一个分割的算是一个控制器
             } else {
@@ -72,6 +73,9 @@ class Router
             $this->controller =Config::get('default_controller');
             $this->action =  Config::get('default_action');
         }
+
+
+
     }
 
     public function urlVar($num, $default = false)

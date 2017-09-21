@@ -11,7 +11,7 @@ return array(
     //支付宝配置信息
     'alipay' => [
         //应用ID,您的APPID。
-        'app_id' => "2017021605702899",
+        'app_id' => "",
         //商户私钥，您的原始格式RSA私钥
         'merchant_private_key' => "",
         //支付宝公钥
