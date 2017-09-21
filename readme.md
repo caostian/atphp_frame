@@ -1,5 +1,5 @@
 # atphp 框架基本使用配置 
-####github 地址 : https://github.com/caostian/atphp_frame
+#### github 地址 : https://github.com/caostian/atphp_frame
 
 * 用了composer,用本框架之前,请执行,composer update /install ,不然缺少必要组件
 * 本框架可以同时建立多个项目,如home/admin等等
