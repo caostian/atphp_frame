@@ -16,7 +16,8 @@
 |  |  |  |--config 主目录的相关配置
 |  |  |  |--controller 控制器文件夹 命名规范:NameController.php
 |  |  |  |--model  模型文件夹 命名规范:NameModel.php
-|  |  |  |--service  其他服务模型,区别model, model每次实例化都需要连接数据库,尽管有单例,但是并不需要的时候,可以用这个,参照Java编写方式 命名规范:NameService.php
+|  |  |  |--service  其他服务模型,区别model, model每次实例化都需要连接数据库
+                     尽管有单例,但是并不需要的时候,可以用这个,参照Java编写方式 命名规范:NameService.php
 |  |  |  |--view  视图文件夹,每个控制器都有单独的文件夹,如IndexController 建立对应的文件夹是Index,操作模板用的是twig引擎
 |  |  |  |--lib  项目库文件夹,一般感觉不会用到的样子
 |  |  |--lib 公共库文件夹 ,建议每个单独的库建一个单独的文件夹区别
