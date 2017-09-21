@@ -1,10 +1,12 @@
-# atphp 框架基本使用配置 github 地址 : https://github.com/caostian/atphp_frame
+# atphp 框架基本使用配置 
+####github 地址 : https://github.com/caostian/atphp_frame
 
-1.用了composer,用本框架之前,请执行,composer update /install ,不然缺少必要组件
-2.本框架可以同时建立多个项目,如home/admin等等
-3.本框架使用twig模板引擎,可以直接查看官方文档
-4.建立新项目目前不是自动建立相关文件夹,请手动建立相关文件夹
-注:项目基本目录
+* 用了composer,用本框架之前,请执行,composer update /install ,不然缺少必要组件
+* 本框架可以同时建立多个项目,如home/admin等等
+* 本框架使用twig模板引擎,可以直接查看官方文档
+* 建立新项目目前不是自动建立相关文件夹,请手动建立相关文件夹
+
+## 注:项目基本目录
 
 |--web
 |  |--app
